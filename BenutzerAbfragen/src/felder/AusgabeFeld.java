@@ -6,15 +6,15 @@ public class AusgabeFeld extends Feld {
 	private boolean group;
 
 
-	public AusgabeFeld(String userDescription, String fieldDefinition,
+	public AusgabeFeld(String fieldDefinition,
 			boolean group) {
-		super(userDescription, fieldDefinition);
+		super(fieldDefinition);
 		this.group = group;
 	}
 
-	public AusgabeFeld(String tabellenName, String userDescription,
+	public AusgabeFeld(String tabellenName,
 			String fieldDefinition, boolean group) {
-		this(userDescription, fieldDefinition, group);
+		this(fieldDefinition, group);
 		put(" t.", tabellenName);
 	}
 

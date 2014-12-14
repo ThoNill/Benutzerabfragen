@@ -6,12 +6,12 @@ import tabellen.TabellenNamenHash;
 public class Feld extends TabellenNamenHash {
 
 	private static final long serialVersionUID = -2395899716469986716L;
+	
 	private String userDescription;
 	private String fieldDefinition;
 
-	public Feld(String userDescription, String fieldDefinition) {
+	public Feld(String fieldDefinition) {
 		super();
-		this.userDescription = userDescription;
 		this.fieldDefinition = fieldDefinition;
 	}
 
@@ -22,4 +22,10 @@ public class Feld extends TabellenNamenHash {
 	public String getUserDescription() {
 		return userDescription;
 	}
+
+	public void setUserDescription(String userDescription) {
+		this.userDescription = userDescription;
+	}
+
+
 }
