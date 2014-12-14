@@ -22,24 +22,15 @@ public class FeldListe<K extends Feld> {
 	}
 
 	public String getSelectText(IndizierteTabellenGruppe gruppe) {
-		StringBuilder builder = new StringBuilder();
-		boolean komma = false;
-		builder.append("select ");
-		for (Feld feld : felder) {
-			komma = kommaDazu(builder, komma);
-			builder.append(feld.getField(gruppe));
-		}
-		return builder.toString();
-	}
-	
-	protected boolean kommaDazu(StringBuilder builder, boolean komma) {
-		if (komma) {
-			builder.append(", ");
-		} else {
-			komma = true;
-		}
-		return komma;
+		Zugriff<Feld> zugriff = new Zugriff<Feld>() {
+
+			@Override
+			public String getText(Feld feld) {
+				return feld.getField(gruppe);
+			}
+		};
+		return zugriff.concat("select ", zugriff, (Vector<Feld>) felder);
+
 	}
 
-	
 }

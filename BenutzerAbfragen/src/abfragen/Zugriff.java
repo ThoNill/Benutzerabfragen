@@ -1,5 +1,5 @@
 package abfragen;
 
-public interface Zugriff<K> {
-	String getText(K obj);
+public abstract class Zugriff<K> extends ReplaceIt<K> {
+	public abstract String getText(K obj);
 }

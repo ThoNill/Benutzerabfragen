@@ -24,18 +24,20 @@ public class AusgabeFeldListe extends FeldListe<AusgabeFeld> {
 
 
 	private String erzeugeGroupBy() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("group by ");
-		boolean komma = false;
-		int position = 1;
-		for (AusgabeFeld feld : felder) {
-			if (!feld.isGroup()) {
-				komma = kommaDazu(builder, komma);
-				builder.append(position);
+		
+		Zugriff<AusgabeFeld> zugriff = new Zugriff<AusgabeFeld>() {
+			int position =0;
+			@Override
+			public String getText(AusgabeFeld feld) {
+				position++;
+				if (feld.isGroup()) {
+					return null;
+				} else {
+					return "" + position;
+				}
 			}
-			position++;
-		}
-		return builder.toString();
+		};
+		return zugriff.concat("group by ", zugriff,  felder);
 	}
 
 

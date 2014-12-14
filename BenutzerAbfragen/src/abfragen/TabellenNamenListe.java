@@ -20,17 +20,17 @@ public class TabellenNamenListe {
 	}
 
 	public String getFromText(IndizierteTabellenGruppe gruppe) {
-		StringBuilder builder = new StringBuilder();
-		boolean komma = false;
-		builder.append("from ");
-		for (String name : namen) {
-			if (komma) {
-				builder.append(", ");
-			} else {
-				komma = true;
+		
+		Zugriff<String> zugriff = new Zugriff<String>() {
+
+			@Override
+			public String getText(String name) {
+				return gruppe.get(name).inFrom();
 			}
-			builder.append(gruppe.get(name).inFrom());
-		}
-		return builder.toString();
+		};
+		
+		return zugriff.concat("from ", zugriff, namen);
+		
+	
 	}
 }

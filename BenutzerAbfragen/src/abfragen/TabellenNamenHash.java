@@ -24,8 +24,6 @@ public class TabellenNamenHash extends HashMap<String, String> {
 
 	protected String getText(IndizierteTabellenGruppe gruppe,
 			HashMap<String, String> map, String text) {
-		ReplaceIt<String> r = new ReplaceIt<>();
-
 		Zugriff<String> zugriff = new Zugriff<String>() {
 
 			@Override
@@ -34,6 +32,6 @@ public class TabellenNamenHash extends HashMap<String, String> {
 				return " " + t.alias() + ".";
 			}
 		};
-		return r.replace(map, text, zugriff);
+		return zugriff.replace(map, text, zugriff);
 	}
 }

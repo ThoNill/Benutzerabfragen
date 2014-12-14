@@ -40,5 +40,28 @@ public class ReplaceIt<K> {
 		}
 		return builder.toString();
 	}
+	
+	public String concat(String prefix, Zugriff<K> zugriff,Iterable<K> Kobjects) {
+		StringBuilder builder = new StringBuilder();
+		boolean komma = false;
+		builder.append(prefix);
+		for (K k : Kobjects) {
+			String text = zugriff.getText(k);
+			if (text != null) {
+				komma = kommaDazu(builder, komma);
+				builder.append(text);
+			}
+		}
+		return builder.toString();
+	}
+	
+	private boolean kommaDazu(StringBuilder builder, boolean komma) {
+		if (komma) {
+			builder.append(", ");
+		} else {
+			komma = true;
+		}
+		return komma;
+	}
 
 }

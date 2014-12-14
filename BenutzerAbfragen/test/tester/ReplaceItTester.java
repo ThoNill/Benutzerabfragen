@@ -3,6 +3,7 @@ package tester;
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
+import java.util.Vector;
 
 import org.junit.Test;
 
@@ -26,27 +27,31 @@ public class ReplaceItTester {
 	}
 	
 	@Test
-	public void testConcat() {
+	public void testConcatArray() {
 		testArray("from a, b ",null,"a","b");
 		testArray("",null,null,null,null);
 	}
+	
+	@Test
+	public void testConcatIterable() {
+		testIterable("from a, b ",null,"a","b");
+		testIterable("",null,null,null,null);
+	}
 
 	protected void test(String erg,String source) {
-		Zugriff<String> zugriff = new Zugriff<String>() {
-			
-			public String getText(String s) {
-				return s;
-			}
-		};
 		
 		
 		HashMap<String,String> map = new HashMap<>();
 		map.put(" a\\.", "tabelle.");
 		map.put("\\$\\{a\\}", "wert");
 		
-		ReplaceIt<String> r = new ReplaceIt<>();
-		
-		assertEquals(erg,r.replace(map, source, zugriff));
+		Zugriff<String> zugriff = new Zugriff<String>() {
+			
+			public String getText(String s) {
+				return s;
+			}
+		};
+		assertEquals(erg,zugriff.replace(map, source, zugriff));
 	}
 	
 	protected void testArray(String erg,String ... source) {
@@ -57,10 +62,24 @@ public class ReplaceItTester {
 			}
 		};
 		
+		assertEquals(erg,zugriff.concat("from",zugriff, source));
+	}
+	
+	protected void testIterable(String erg,String ... source) {
+		Vector<String> texte = new Vector<>();
 		
-		ReplaceIt<String> r = new ReplaceIt<>();
+		for(String t : source) {
+			texte.add(t);
+		}
 		
-		assertEquals(erg,r.concat("from",zugriff, source));
+		Zugriff<String> zugriff = new Zugriff<String>() {
+			
+			public String getText(String s) {
+				return s;
+			}
+		};
+		
+		assertEquals(erg,zugriff.concat("from",zugriff, source));
 	}
 
 }

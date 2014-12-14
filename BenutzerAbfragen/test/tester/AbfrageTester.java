@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.HashMap;
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 
 import abfragen.AusgabeFeld;
@@ -41,16 +43,24 @@ public class AbfrageTester {
 		verbindungen.add(new Verbindung("kunde","adresse"," a.kundenid = b.kundenid "));
 		verbindungen.add(new Verbindung("kunde","geschäftsadresse"," a.kundenid = b.kundenid and b.art = 'G' "));
 		
-		System.out.println(felder.getSelectText(tabellen));
+		vergleichen("select  t1.nummer,  t1.name,  t2.strasse,  t2.ort,  t2.plz",felder.getSelectText(tabellen));
 		TabellenNamenListe tabelleAuswahl = felder.passendeTabellen();
 		
-		System.out.println(tabelleAuswahl.getFromText(tabellen));
+		vergleichen("from kunde t1, adresse t2",tabelleAuswahl.getFromText(tabellen));
 		
-		System.out.println(verbindungen.getWhereText(tabellen, tabelleAuswahl));
+		vergleichen("where 1=1 and  t1.kundenid = t2.kundenid",verbindungen.getWhereText(tabellen, tabelleAuswahl));
 		
-		System.out.println(felder.getGroupBy());
+		vergleichen("group by 1, 2, 4, 5",felder.getGroupBy());
 		
 		
+	}
+
+	private void vergleichen(String erwartet, String wirklich) {
+		assertEquals(standardisieren(erwartet),standardisieren(wirklich));
+	}
+
+	private Object standardisieren(String erwartet) {
+		return erwartet.trim().replaceAll(" +", " ");
 	}
 	
 
