@@ -1,4 +1,4 @@
-package abfragen;
+package tabellen;
 
 public class IndizierteTabellenGruppe extends TabellenGruppe {
 

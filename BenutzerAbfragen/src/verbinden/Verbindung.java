@@ -1,6 +1,10 @@
-package abfragen;
+package verbinden;
 
 import java.util.HashMap;
+
+import tabellen.IndizierteTabellenGruppe;
+import tabellen.TabellenNamenHash;
+import tabellen.TabellenNamenListe;
 
 public class Verbindung extends TabellenNamenHash {
 	

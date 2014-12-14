@@ -1,4 +1,4 @@
-package abfragen;
+package tabellen;
 
 public class Tabelle {
 	private String name;

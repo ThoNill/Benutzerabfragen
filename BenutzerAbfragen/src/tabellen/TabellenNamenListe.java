@@ -1,6 +1,8 @@
-package abfragen;
+package tabellen;
 
 import java.util.Vector;
+
+import textersetzen.Zugriff;
 
 public class TabellenNamenListe {
 	Vector<String> namen = new Vector<>();

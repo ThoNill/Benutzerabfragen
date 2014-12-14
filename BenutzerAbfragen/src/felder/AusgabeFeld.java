@@ -1,4 +1,4 @@
-package abfragen;
+package felder;
 
 public class AusgabeFeld extends Feld {
 	

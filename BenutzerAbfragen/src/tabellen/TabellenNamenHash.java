@@ -1,6 +1,8 @@
-package abfragen;
+package tabellen;
 
 import java.util.HashMap;
+
+import textersetzen.Zugriff;
 
 public class TabellenNamenHash extends HashMap<String, String> {
 

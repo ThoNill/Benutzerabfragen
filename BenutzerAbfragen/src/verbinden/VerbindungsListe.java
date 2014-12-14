@@ -1,6 +1,9 @@
-package abfragen;
+package verbinden;
 
 import java.util.Vector;
+
+import tabellen.IndizierteTabellenGruppe;
+import tabellen.TabellenNamenListe;
 
 public class VerbindungsListe {
 	Vector<Verbindung> verbindungen = new Vector<>();

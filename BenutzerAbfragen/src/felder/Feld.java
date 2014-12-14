@@ -1,4 +1,7 @@
-package abfragen;
+package felder;
+
+import tabellen.IndizierteTabellenGruppe;
+import tabellen.TabellenNamenHash;
 
 public class Feld extends TabellenNamenHash {
 

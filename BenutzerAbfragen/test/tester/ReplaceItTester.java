@@ -7,12 +7,12 @@ import java.util.Vector;
 
 import org.junit.Test;
 
-import abfragen.AusgabeFeld;
-import abfragen.AusgabeFeldListe;
-import abfragen.IndizierteTabellenGruppe;
-import abfragen.ReplaceIt;
-import abfragen.Tabelle;
-import abfragen.Zugriff;
+import felder.AusgabeFeld;
+import felder.AusgabeFeldListe;
+import tabellen.IndizierteTabellenGruppe;
+import tabellen.Tabelle;
+import textersetzen.ReplaceIt;
+import textersetzen.Zugriff;
 
 public class ReplaceItTester {
 

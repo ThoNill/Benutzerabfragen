@@ -1,6 +1,10 @@
-package abfragen;
+package felder;
 
 import java.util.Vector;
+
+import tabellen.IndizierteTabellenGruppe;
+import tabellen.TabellenNamenListe;
+import textersetzen.Zugriff;
 
 public class FeldListe<K extends Feld> {
 	protected Vector<K> felder = new Vector<>();

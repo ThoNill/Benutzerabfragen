@@ -1,4 +1,4 @@
-package abfragen;
+package tabellen;
 
 import java.util.HashMap;
 
