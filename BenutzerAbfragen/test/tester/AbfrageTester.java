@@ -9,7 +9,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import abfragen.AbfregenImpl;
-import abfragen.AusgabeFeldFabrikImpl;
+import abfragen.TabellenFeldFabrik;
 import felder.AusgabeFeld;
 import felder.AusgabeFeldListe;
 import tabellen.IndizierteTabellenGruppe;
@@ -104,11 +104,11 @@ public class AbfrageTester {
 		generator.add(new Verbindung("kunde","adresse"," a.kundenid = b.kundenid "));
 		generator.add(new Verbindung("kunde","geschäftsadresse"," a.kundenid = b.kundenid and b.art = 'G' "));
 		
-		generator.add(new AusgabeFeldFabrikImpl("kunde","nummer","Kundennummer"));
-		generator.add(new AusgabeFeldFabrikImpl("kunde","name","Name"));
-		generator.add(new AusgabeFeldFabrikImpl("adresse","strasse","Strasse"));
-		generator.add(new AusgabeFeldFabrikImpl("adresse","ort","Ort"));
-		generator.add(new AusgabeFeldFabrikImpl("adresse","plz","Plz"));
+		generator.add(new TabellenFeldFabrik("kunde","nummer","Kundennummer"));
+		generator.add(new TabellenFeldFabrik("kunde","name","Name"));
+		generator.add(new TabellenFeldFabrik("adresse","strasse","Strasse"));
+		generator.add(new TabellenFeldFabrik("adresse","ort","Ort"));
+		generator.add(new TabellenFeldFabrik("adresse","plz","Plz"));
 		
 		vergleichen("select  t1.nummer,  t1.name,  t2.strasse,  t2.ort,  t2.plz from kunde t1, adresse t2 where 1=1 and  t1.kundenid = t2.kundenid ",generator.createSqlStatement());
 			
@@ -129,12 +129,12 @@ public class AbfrageTester {
 		generator.add(new Verbindung("kunde","geschäftsadresse"," a.kundenid = b.kundenid and b.art = 'G' "));
 		generator.add(new Verbindung("kunde","rechnung"," a.kundenid = b.kundenid "));
 		
-		generator.add(new AusgabeFeldFabrikImpl("kunde","nummer","Kundennummer"));
-		generator.add(new AusgabeFeldFabrikImpl("kunde","name","Name"));
-		generator.add(new AusgabeFeldFabrikImpl("adresse","strasse","Strasse"));
-		generator.add(new AusgabeFeldFabrikImpl("adresse","ort","Ort"));
-		generator.add(new AusgabeFeldFabrikImpl("adresse","plz","Plz"));
-		generator.add(new AusgabeFeldFabrikImpl("rechnung","soll","Soll"));
+		generator.add(new TabellenFeldFabrik("kunde","nummer","Kundennummer"));
+		generator.add(new TabellenFeldFabrik("kunde","name","Name"));
+		generator.add(new TabellenFeldFabrik("adresse","strasse","Strasse"));
+		generator.add(new TabellenFeldFabrik("adresse","ort","Ort"));
+		generator.add(new TabellenFeldFabrik("adresse","plz","Plz"));
+		generator.add(new TabellenFeldFabrik("rechnung","soll","Soll"));
 		
 		generator.setGroupFunction(5, "sum");
 				

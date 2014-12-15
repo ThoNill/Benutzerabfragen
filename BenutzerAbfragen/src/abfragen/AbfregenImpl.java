@@ -1,5 +1,8 @@
 package abfragen;
 
+import java.util.List;
+import java.util.Vector;
+
 import tabellen.IndizierteTabellenGruppe;
 import tabellen.Tabelle;
 import tabellen.TabellenNamenListe;
@@ -10,7 +13,7 @@ import felder.AusgabeFeldListe;
 public class AbfregenImpl implements Abfragen {
 	private IndizierteTabellenGruppe tabellen = new IndizierteTabellenGruppe();
 	private VerbindungsListe verbindungen = new VerbindungsListe();
-	private AusgabeFelFabrikListe ausgabe = new AusgabeFelFabrikListe();
+	private FeldFabrikImplListe feldFabriken = new FeldFabrikImplListe();
 
 	public AbfregenImpl() {
 	}
@@ -23,8 +26,8 @@ public class AbfregenImpl implements Abfragen {
 		return verbindungen.add(e);
 	}
 	
-	public void add(AusgabeFeldFabrikImpl fabrik) {
-		ausgabe.add(fabrik);
+	public void add(TabellenFeldFabrik fabrik) {
+		feldFabriken.add(fabrik);
 	}
 
 	@Override
@@ -38,23 +41,26 @@ public class AbfregenImpl implements Abfragen {
 	}
 	
 	public String createSqlStatement() {
-		return createSqlStatement(ausgabe.createFeldListe());
+		return createSqlStatement(feldFabriken.createFeldListe());
 	}
 
 	public void setOn(int index) {
-		ausgabe.setOn(index);
+		feldFabriken.setOn(index);
 	}
 
 	public void setOff(int index) {
-		ausgabe.setOff(index);
+		feldFabriken.setOff(index);
 	}
 
 	public void toggle(int index) {
-		ausgabe.toggle(index);
+		feldFabriken.toggle(index);
 	}
 
 	public void setGroupFunction(int index, String groupFunction) {
-		ausgabe.setGroupFunction(index, groupFunction);
+		feldFabriken.setGroupFunction(index, groupFunction);
 	}
-
+	
+	public List<FeldFabrik> getFabriken() {
+		return feldFabriken.getFabriken();
+	}
 }

@@ -1,23 +1,35 @@
 package abfragen;
 
+import java.util.List;
 import java.util.Vector;
 
 import felder.AusgabeFeldListe;
 
-public class AusgabeFelFabrikListe {
-	private Vector<AusgabeFeldFabrikImpl> fabriken = new Vector<>();
+public class FeldFabrikImplListe {
+	private Vector<FeldFabrikImpl> fabriken = new Vector<>();
 	
-	public AusgabeFelFabrikListe() {
+	public FeldFabrikImplListe() {
 		
 	}
 	
-	public void add(AusgabeFeldFabrikImpl fabrik) {
+	public void add(FeldFabrikImpl fabrik) {
 		fabriken.add(fabrik);
 	}
 	
+	public List<FeldFabrik> getFabriken() {
+		Vector<FeldFabrik> erg = new Vector<>();
+		for(FeldFabrikImpl f : fabriken) {
+			if (f.isOn()) {
+				erg.add(f);
+			}
+		}
+		return erg;
+	}
+
+	
 	public AusgabeFeldListe createFeldListe() {
 		AusgabeFeldListe ausgabeFelder = new AusgabeFeldListe();
-		for(AusgabeFeldFabrikImpl f : fabriken) {
+		for(FeldFabrikImpl f : fabriken) {
 			if (f.isOn()) {
 				ausgabeFelder.add(f.createFeld());
 			}
@@ -34,7 +46,7 @@ public class AusgabeFelFabrikListe {
 	}
 	
 	public void toggle(int index) {
-		AusgabeFeldFabrikImpl f = fabriken.get(index);
+		FeldFabrikImpl f = fabriken.get(index);
 		f.setOn(!f.isOn());
 	}
 	
