@@ -11,7 +11,7 @@ public class Verbindung extends TabellenNamenHash {
 	private static final long serialVersionUID = -2190073760449314178L;
 	
 	private String whereText;
-	private HashMap<String, String> dazu = new HashMap<>();
+	private HashMap<String, String> dazu = new HashMap<String,String>();
 
 	public Verbindung(String whereText) {
 		super();

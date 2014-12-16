@@ -7,7 +7,7 @@ import tabellen.TabellenNamenListe;
 import textersetzen.Zugriff;
 
 public class FeldListe<K extends Feld> {
-	protected Vector<K> felder = new Vector<>();
+	protected Vector<K> felder = new Vector<K>();
 
 	public FeldListe() {
 
@@ -26,14 +26,15 @@ public class FeldListe<K extends Feld> {
 	}
 
 	public String getSelectText(IndizierteTabellenGruppe gruppe) {
+		final IndizierteTabellenGruppe g = gruppe;
+		
 		Zugriff<Feld> zugriff = new Zugriff<Feld>() {
-
 			@Override
 			public String getText(Feld feld) {
-				return feld.getField(gruppe);
+				return feld.getField(g);
 			}
 		};
-		return zugriff.concat("select ", zugriff, (Vector<Feld>) felder);
+		return zugriff.concat("select ",(Vector<Feld>) felder);
 
 	}
 

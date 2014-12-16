@@ -26,14 +26,17 @@ public class TabellenNamenHash extends HashMap<String, String> {
 
 	protected String getText(IndizierteTabellenGruppe gruppe,
 			HashMap<String, String> map, String text) {
+		
+		final IndizierteTabellenGruppe g = gruppe;
+		
 		Zugriff<String> zugriff = new Zugriff<String>() {
 
 			@Override
 			public String getText(String name) {
-				Tabelle t = gruppe.get(name);
+				Tabelle t = g.get(name);
 				return " " + t.alias() + ".";
 			}
 		};
-		return zugriff.replace(map, text, zugriff);
+		return zugriff.replace(map, text);
 	}
 }

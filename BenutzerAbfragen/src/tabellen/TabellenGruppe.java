@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class TabellenGruppe {
 
-	protected HashMap<String, Tabelle> tabellen = new HashMap<>();
+	protected HashMap<String, Tabelle> tabellen = new HashMap<String, Tabelle>();
 
 	public TabellenGruppe() {
 		super();

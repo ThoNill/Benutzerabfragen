@@ -39,7 +39,7 @@ public class AusgabeFeldListe extends FeldListe<AusgabeFeld> {
 				}
 			}
 		};
-		return zugriff.concat("group by ", zugriff,  felder);
+		return zugriff.concat("group by ",felder);
 	}
 
 

@@ -41,7 +41,7 @@ public class ReplaceItTester {
 	protected void test(String erg,String source) {
 		
 		
-		HashMap<String,String> map = new HashMap<>();
+		HashMap<String,String> map = new HashMap<String,String>();
 		map.put(" a\\.", "tabelle.");
 		map.put("\\$\\{a\\}", "wert");
 		
@@ -62,11 +62,11 @@ public class ReplaceItTester {
 			}
 		};
 		
-		assertEquals(erg,zugriff.concat("from",zugriff, source));
+		assertEquals(erg,zugriff.concat("from",zugriff,source));
 	}
 	
 	protected void testIterable(String erg,String ... source) {
-		Vector<String> texte = new Vector<>();
+		Vector<String> texte = new Vector<String>();
 		
 		for(String t : source) {
 			texte.add(t);

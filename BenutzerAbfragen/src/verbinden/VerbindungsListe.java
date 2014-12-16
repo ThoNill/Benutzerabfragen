@@ -6,7 +6,7 @@ import tabellen.IndizierteTabellenGruppe;
 import tabellen.TabellenNamenListe;
 
 public class VerbindungsListe {
-	Vector<Verbindung> verbindungen = new Vector<>();
+	Vector<Verbindung> verbindungen = new Vector<Verbindung>();
 
 	public VerbindungsListe() {
 
@@ -17,7 +17,7 @@ public class VerbindungsListe {
 	}
 
 	public Vector<Verbindung> passendeVerbindungen(TabellenNamenListe liste) {
-		Vector<Verbindung> erg = new Vector<>();
+		Vector<Verbindung> erg = new Vector<Verbindung>();
 		for (Verbindung v : verbindungen) {
 			if (v.passt(liste)) {
 				erg.add(v);

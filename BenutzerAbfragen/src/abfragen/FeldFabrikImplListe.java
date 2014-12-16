@@ -6,7 +6,7 @@ import java.util.Vector;
 import felder.AusgabeFeldListe;
 
 public class FeldFabrikImplListe {
-	private Vector<FeldFabrikImpl> fabriken = new Vector<>();
+	private Vector<FeldFabrikImpl> fabriken = new Vector<FeldFabrikImpl>();
 	
 	public FeldFabrikImplListe() {
 		
@@ -17,7 +17,7 @@ public class FeldFabrikImplListe {
 	}
 	
 	public List<FeldFabrik> getFabriken() {
-		Vector<FeldFabrik> erg = new Vector<>();
+		Vector<FeldFabrik> erg = new Vector<FeldFabrik>();
 		for(FeldFabrikImpl f : fabriken) {
 			if (f.isOn()) {
 				erg.add(f);

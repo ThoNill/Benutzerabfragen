@@ -5,7 +5,7 @@ import java.util.Vector;
 import textersetzen.Zugriff;
 
 public class TabellenNamenListe {
-	Vector<String> namen = new Vector<>();
+	Vector<String> namen = new Vector<String>();
 
 	public TabellenNamenListe() {
 
@@ -22,16 +22,17 @@ public class TabellenNamenListe {
 	}
 
 	public String getFromText(IndizierteTabellenGruppe gruppe) {
+		final IndizierteTabellenGruppe g = gruppe;
 		
 		Zugriff<String> zugriff = new Zugriff<String>() {
 
 			@Override
 			public String getText(String name) {
-				return gruppe.get(name).inFrom();
+				return g.get(name).inFrom();
 			}
 		};
 		
-		return zugriff.concat("from ", zugriff, namen);
+		return zugriff.concat("from ", namen);
 		
 	
 	}
