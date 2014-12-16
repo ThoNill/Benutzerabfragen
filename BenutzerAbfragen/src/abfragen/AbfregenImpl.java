@@ -1,8 +1,7 @@
 package abfragen;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Vector;
-
 import tabellen.IndizierteTabellenGruppe;
 import tabellen.Tabelle;
 import tabellen.TabellenNamenListe;
@@ -31,17 +30,25 @@ public class AbfregenImpl implements Abfragen {
 	}
 
 	@Override
-	public String createSqlStatement(AusgabeFeldListe felder) {
+	public String createSqlStatement(AusgabeFeldListe felder,HashMap<String,String> parameter) {
 		TabellenNamenListe tabelleAuswahl = felder.passendeTabellen();
 		String select = felder.getSelectText(tabellen);
 		String from = tabelleAuswahl.getFromText(tabellen);
-		String where =verbindungen.getWhereText(tabellen, tabelleAuswahl);
+		String where =verbindungen.getWhereText(tabellen, tabelleAuswahl,parameter);
 		String groupby = felder.getGroupBy();
 		return select + " " + from + " " + where + " " +groupby;
 	}
 	
+	public String createSqlStatement(HashMap<String,String> parameter) {
+		return createSqlStatement(feldFabriken.createFeldListe(),parameter);
+	}
+	
 	public String createSqlStatement() {
-		return createSqlStatement(feldFabriken.createFeldListe());
+		return createSqlStatement(new HashMap<String, String>());
+	}
+	
+	public String createSqlStatement(AusgabeFeldListe felder) {
+		return createSqlStatement(felder,new HashMap<String, String>());
 	}
 
 	public void setOn(int index) {
@@ -63,4 +70,5 @@ public class AbfregenImpl implements Abfragen {
 	public List<FeldFabrik> getFabriken() {
 		return feldFabriken.getFabriken();
 	}
+
 }

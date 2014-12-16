@@ -1,11 +1,8 @@
 package verbinden;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.Vector;
-
+import java.util.Set;
 import tabellen.IndizierteTabellenGruppe;
-import tabellen.Tabelle;
 import tabellen.TabellenNamenListe;
 import textersetzen.Zugriff;
 
@@ -27,22 +24,19 @@ public class ParameterVerbindung extends Verbindung {
 		parameterNamen.put(key, value);
 	}
 
-	public boolean passt(TabellenNamenListe liste) {
-		return false;
-	}
-	
-	public boolean passtParameter(TabellenNamenListe liste,List<String> vorhandeneParameter) {
-		
-		boolean erg = super.passt(liste);
+	@Override
+	public boolean passt(TabellenNamenListe liste,Set<String> vorhandeneParameter) {
+		boolean erg = super.passt(liste,vorhandeneParameter);
 		for (String t : parameterNamen.values()) {
 			erg = erg && vorhandeneParameter.contains(t);
 		}
 		return erg;
 	}
 	
-	public String getWhereText(IndizierteTabellenGruppe gruppe,HashMap<String,String> vorhandeneParameter) {
-		String text =  super.getWhereText(gruppe);
-		return getParameterText(vorhandeneParameter, text);
+	@Override
+	public String getWhereText(IndizierteTabellenGruppe gruppe,HashMap<String,String> parameter) {
+		String text =  super.getWhereText(gruppe,parameter);
+		return getParameterText(parameter, text);
 	}
 
 	private String getParameterText( HashMap<String, String> vorhandeneParameter, String text) {

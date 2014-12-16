@@ -7,11 +7,6 @@ import java.util.Vector;
 
 import org.junit.Test;
 
-import felder.AusgabeFeld;
-import felder.AusgabeFeldListe;
-import tabellen.IndizierteTabellenGruppe;
-import tabellen.Tabelle;
-import textersetzen.ReplaceIt;
 import textersetzen.Zugriff;
 
 public class ReplaceItTester {
@@ -47,6 +42,7 @@ public class ReplaceItTester {
 		
 		Zugriff<String> zugriff = new Zugriff<String>() {
 			
+			@Override
 			public String getText(String s) {
 				return s;
 			}
@@ -57,6 +53,7 @@ public class ReplaceItTester {
 	protected void testArray(String erg,String ... source) {
 		Zugriff<String> zugriff = new Zugriff<String>() {
 			
+			@Override
 			public String getText(String s) {
 				return s;
 			}
@@ -74,6 +71,7 @@ public class ReplaceItTester {
 		
 		Zugriff<String> zugriff = new Zugriff<String>() {
 			
+			@Override
 			public String getText(String s) {
 				return s;
 			}

@@ -1,6 +1,7 @@
 package verbinden;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import tabellen.IndizierteTabellenGruppe;
 import tabellen.TabellenNamenHash;
@@ -32,11 +33,11 @@ public class Verbindung extends TabellenNamenHash {
 		put(key, value);
 	}
 
-	public String getWhereText(IndizierteTabellenGruppe gruppe) {
+	public String getWhereText(IndizierteTabellenGruppe gruppe,HashMap<String,String> parameters) {
 		return getText(gruppe, dazu, getText(gruppe, this, whereText));
 	}
 
-	public boolean passt(TabellenNamenListe liste) {
+	public boolean passt(TabellenNamenListe liste,Set<String> vorhandeneParameter) {
 		boolean erg = true;
 		for (String t : values()) {
 			erg = erg && liste.contains(t);

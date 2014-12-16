@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.HashMap;
 
-import junit.framework.Assert;
-
 import org.junit.Test;
 
 import abfragen.AbfregenImpl;
@@ -15,8 +13,7 @@ import felder.AusgabeFeldListe;
 import tabellen.IndizierteTabellenGruppe;
 import tabellen.Tabelle;
 import tabellen.TabellenNamenListe;
-import textersetzen.ReplaceIt;
-import textersetzen.Zugriff;
+import verbinden.ParameterVerbindung;
 import verbinden.Verbindung;
 import verbinden.VerbindungsListe;
 
@@ -146,6 +143,39 @@ public class AbfrageTester {
 	
 		vergleichen("select t1.nummer, t1.name, sum( t4.soll) from kunde t1, rechnung t4 where 1=1 and t1.kundenid = t4.kundenid group by 1, 2",generator.createSqlStatement());
 		
+	}
+	
+	@Test
+	public void testAbfragen4() {
+		
+		AbfregenImpl generator = new AbfregenImpl();
+		
+		generator.add(new Tabelle("kunde"));
+		generator.add(new Tabelle("adresse"));
+		generator.add(new Tabelle("geschäftsadresse","adresse"));
+		generator.add(new Tabelle("rechnung"));
+		
+		
+		generator.add(new Verbindung("kunde","adresse"," a.kundenid = b.kundenid "));
+		generator.add(new Verbindung("kunde","geschäftsadresse"," a.kundenid = b.kundenid and b.art = 'G' "));
+		generator.add(new Verbindung("kunde","rechnung"," a.kundenid = b.kundenid "));
+		generator.add(new ParameterVerbindung("kunde","name"));
+		
+		generator.add(new TabellenFeldFabrik("kunde","nummer","Kundennummer"));
+		generator.add(new TabellenFeldFabrik("kunde","name","Name"));
+		generator.add(new TabellenFeldFabrik("adresse","strasse","Strasse"));
+		generator.add(new TabellenFeldFabrik("adresse","ort","Ort"));
+		generator.add(new TabellenFeldFabrik("adresse","plz","Plz"));
+		generator.add(new TabellenFeldFabrik("rechnung","soll","Soll"));
+		
+		generator.setGroupFunction(5, "sum");
+				
+		HashMap<String,String> parameter = new HashMap<String, String>();
+		parameter.put("name", "'Thomas'");
+		
+		vergleichen("select t1.nummer, t1.name, t2.strasse, t2.ort, t2.plz, sum( t4.soll) from kunde t1, adresse t2, rechnung t4 where 1=1 and t1.kundenid = t2.kundenid and t1.kundenid = t4.kundenid and t1.name = 'Thomas' group by 1, 2, 3, 4, 5",generator.createSqlStatement(parameter));
+		
+			
 	}
 
 }

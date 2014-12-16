@@ -22,10 +22,12 @@ public class FeldFabrikImpl implements FeldFabrik {
 		this.type = type;
 	}
 
+	@Override
 	public String getUserDescription() {
 		return userDescription;
 	}
 
+	@Override
 	public AusgabeFeld createFeld() {
 		if (!on)
 			return null;
@@ -45,6 +47,7 @@ public class FeldFabrikImpl implements FeldFabrik {
 		this.groupFunction = groupFunction;
 	}
 
+	@Override
 	public boolean isOn() {
 		return on;
 	}
@@ -53,10 +56,12 @@ public class FeldFabrikImpl implements FeldFabrik {
 		this.on = on;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	@Override
 	public String getType() {
 		return type;
 	}
