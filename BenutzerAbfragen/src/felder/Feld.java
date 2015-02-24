@@ -18,7 +18,9 @@ public class Feld extends TabellenNamenHash {
 		return getText(gruppe, fieldDefinition);
 	}
 
-	
+	public String toString() {
+		return fieldDefinition;
+	}
 
 
 }

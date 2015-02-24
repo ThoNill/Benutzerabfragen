@@ -143,6 +143,9 @@ public class AbfrageTester {
 	
 		vergleichen("select t1.nummer, t1.name, sum( t4.soll) from kunde t1, rechnung t4 where 1=1 and t1.kundenid = t4.kundenid group by 1, 2",generator.createSqlStatement());
 		
+		String safeText = generator.createSafeText();
+		assertEquals("3 kunde.nummer kunde.name rechnung.soll",safeText);
+		assertEquals("t.nummer   t.name  sum( t.soll)",generator.createFeldListeFromSafeText(safeText).fieldsAsString());
 	}
 	
 	@Test

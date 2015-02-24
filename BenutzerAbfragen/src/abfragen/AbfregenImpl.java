@@ -2,6 +2,7 @@ package abfragen;
 
 import java.util.HashMap;
 import java.util.List;
+
 import tabellen.IndizierteTabellenGruppe;
 import tabellen.Tabelle;
 import tabellen.TabellenNamenListe;
@@ -71,4 +72,12 @@ public class AbfregenImpl implements Abfragen {
 		return feldFabriken.getFabriken();
 	}
 
+	public String createSafeText() {
+		return feldFabriken.createSafeText();
+	}
+	
+	public AusgabeFeldListe createFeldListeFromSafeText(String felder) {
+		return feldFabriken.createFeldListeFromSafeText(felder);
+	}
+	
 }

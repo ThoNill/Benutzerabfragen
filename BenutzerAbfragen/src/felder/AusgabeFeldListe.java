@@ -43,5 +43,13 @@ public class AusgabeFeldListe extends FeldListe<AusgabeFeld> {
 	}
 
 
+	public String  fieldsAsString() {
+		StringBuilder builder = new StringBuilder();
+		for (AusgabeFeld feld : felder) {
+			builder.append(' ');
+			builder.append(feld.toString());
+		}
+		return builder.toString().trim();
+	}
 
 }

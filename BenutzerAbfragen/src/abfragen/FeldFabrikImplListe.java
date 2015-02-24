@@ -1,5 +1,6 @@
 package abfragen;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
@@ -7,6 +8,7 @@ import felder.AusgabeFeldListe;
 
 public class FeldFabrikImplListe {
 	private Vector<FeldFabrikImpl> fabriken = new Vector<FeldFabrikImpl>();
+	private HashMap<String,FeldFabrikImpl> fabrikenHash = new HashMap<String,FeldFabrikImpl>();
 	
 	public FeldFabrikImplListe() {
 		
@@ -14,6 +16,7 @@ public class FeldFabrikImplListe {
 	
 	public void add(FeldFabrikImpl fabrik) {
 		fabriken.add(fabrik);
+		fabrikenHash.put(fabrik.getName(), fabrik);
 	}
 	
 	public List<FeldFabrik> getFabriken() {
@@ -54,5 +57,32 @@ public class FeldFabrikImplListe {
 		fabriken.get(index).setGroupFunction(groupFunction);
 	}
 
+	public String createSafeText() {
+		int count = 0;
+		for(FeldFabrikImpl f : fabriken) {
+			if (f.isOn()) {
+				count++;
+			}
+		}
+		StringBuilder builder = new StringBuilder();
+		builder.append(count);
+		for(FeldFabrikImpl f : fabriken) {
+			if (f.isOn()) {
+				builder.append(' ');
+				builder.append(f.getName());
+			}
+		}
+		return builder.toString();
+	}
+
+	public AusgabeFeldListe createFeldListeFromSafeText(String felder) {
+		AusgabeFeldListe ausgabeFelder = new AusgabeFeldListe();
+		String feldnamen[] = felder.split(" +");
+		for(int i = 1;i < feldnamen.length;i++) {
+			FeldFabrik f = fabrikenHash.get(feldnamen[i]);
+			ausgabeFelder.add(f.createFeld());
+		}
+		return ausgabeFelder;
+	}
 
 }
