@@ -31,11 +31,13 @@ public class AbfrageTester {
 		
 		AusgabeFeldListe felder = new AusgabeFeldListe();
 		
-		felder.add(new AusgabeFeld("kunde", " t.nummer", false));
-		felder.add(new AusgabeFeld("kunde"," t.name", false));
+		boolean ohneGruppierung = false;
+		
+		felder.add(new AusgabeFeld("kunde", " t.nummer", ohneGruppierung));
+		felder.add(new AusgabeFeld("kunde"," t.name", ohneGruppierung));
 		felder.add(new AusgabeFeld("adresse"," t.strasse", true));
-		felder.add(new AusgabeFeld("adresse", " t.ort", false));
-		felder.add(new AusgabeFeld("adresse", " t.plz", false));
+		felder.add(new AusgabeFeld("adresse", " t.ort", ohneGruppierung));
+		felder.add(new AusgabeFeld("adresse", " t.plz", ohneGruppierung));
 		
 		VerbindungsListe verbindungen = new VerbindungsListe();
 		
@@ -77,12 +79,15 @@ public class AbfrageTester {
 		generator.add(new Verbindung("kunde","geschäftsadresse"," a.kundenid = b.kundenid and b.art = 'G' "));
 		
 		AusgabeFeldListe felder = new AusgabeFeldListe();
+		boolean ohneGruppierung = false;
+		boolean mitGruppierung = true;
 		
-		felder.add(new AusgabeFeld("kunde", " t.nummer", false));
-		felder.add(new AusgabeFeld("kunde", " t.name", false));
-		felder.add(new AusgabeFeld("adresse", " t.strasse", true));
-		felder.add(new AusgabeFeld("adresse"," t.ort", false));
-		felder.add(new AusgabeFeld("adresse"," t.plz", false));
+		
+		felder.add(new AusgabeFeld("kunde", " t.nummer", ohneGruppierung));
+		felder.add(new AusgabeFeld("kunde", " t.name", ohneGruppierung));
+		felder.add(new AusgabeFeld("adresse", " t.strasse", mitGruppierung));
+		felder.add(new AusgabeFeld("adresse"," t.ort", ohneGruppierung));
+		felder.add(new AusgabeFeld("adresse"," t.plz", ohneGruppierung));
 		
 		vergleichen("select  t1.nummer,  t1.name,  t2.strasse,  t2.ort,  t2.plz from kunde t1, adresse t2 where 1=1 and  t1.kundenid = t2.kundenid group by 1, 2, 4, 5",generator.createSqlStatement(felder));
 			
