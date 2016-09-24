@@ -1,14 +1,15 @@
 package verbinden;
 
-import java.util.Set;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 import tabellen.IndizierteTabellenGruppe;
 import tabellen.TabellenNamenListe;
 
 public class VerbindungsListe {
-	Vector<Verbindung> verbindungen = new Vector<Verbindung>();
+	List<Verbindung> verbindungen = new ArrayList<Verbindung>();
 
 	public VerbindungsListe() {
 
@@ -18,8 +19,8 @@ public class VerbindungsListe {
 		return verbindungen.add(e);
 	}
 
-	public Vector<Verbindung> passendeVerbindungen(TabellenNamenListe liste,Set<String> vorhandeneParameter) {
-		Vector<Verbindung> erg = new Vector<Verbindung>();
+	public List<Verbindung> passendeVerbindungen(TabellenNamenListe liste,Set<String> vorhandeneParameter) {
+		List<Verbindung> erg = new ArrayList<Verbindung>();
 		for (Verbindung v : verbindungen) {
 			if (v.passt(liste,vorhandeneParameter)) {
 				erg.add(v);
@@ -30,14 +31,14 @@ public class VerbindungsListe {
 	}
 
 	public void listeErweitern(TabellenNamenListe liste,
-			Vector<Verbindung> verbindungen) {
+			List<Verbindung> verbindungen) {
 		for (Verbindung v : verbindungen) {
 			v.listeErweitern(liste);
 		}
 	}
 
 	public String getWhereText(IndizierteTabellenGruppe gruppe,
-			Vector<Verbindung> verbindungen,HashMap<String,String> parameter) {
+			List<Verbindung> verbindungen,HashMap<String,String> parameter) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("where 1=1");
 		for (Verbindung v : verbindungen) {

@@ -1,11 +1,12 @@
 package tabellen;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import textersetzen.Zugriff;
 
 public class TabellenNamenListe {
-	Vector<String> namen = new Vector<String>();
+	List<String> namen = new ArrayList<String>();
 
 	public TabellenNamenListe() {
 

@@ -1,13 +1,14 @@
 package felder;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import tabellen.IndizierteTabellenGruppe;
 import tabellen.TabellenNamenListe;
 import textersetzen.Zugriff;
 
 public class FeldListe<K extends Feld> {
-	protected Vector<K> felder = new Vector<K>();
+	protected List<K> felder = new ArrayList<K>();
 
 	public FeldListe() {
 
@@ -34,7 +35,7 @@ public class FeldListe<K extends Feld> {
 				return feld.getField(g);
 			}
 		};
-		return zugriff.concat("select ",(Vector<Feld>) felder);
+		return zugriff.concat("select ",(List<Feld>) felder);
 
 	}
 

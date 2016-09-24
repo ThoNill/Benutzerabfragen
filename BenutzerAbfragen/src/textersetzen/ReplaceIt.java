@@ -8,8 +8,9 @@ public class ReplaceIt<K> {
 
 	}
 
-	public String replace(HashMap<String, K> map, String source,
+	public String replace(HashMap<String, K> map, String sourceParameter,
 			Zugriff<K> zugriff) {
+	    String source = sourceParameter;
 		for (String key : map.keySet()) {
 			K obj = map.get(key);
 			if (obj != null) {
@@ -59,7 +60,7 @@ public class ReplaceIt<K> {
 		if (komma) {
 			builder.append(", ");
 		} else {
-			komma = true;
+			return true;
 		}
 		return komma;
 	}

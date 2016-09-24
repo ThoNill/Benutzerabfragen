@@ -2,7 +2,9 @@ package tester;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Vector;
 
 import org.junit.Test;
@@ -63,7 +65,7 @@ public class ReplaceItTester {
 	}
 	
 	protected void testIterable(String erg,String ... source) {
-		Vector<String> texte = new Vector<String>();
+		List<String> texte = new ArrayList<String>();
 		
 		for(String t : source) {
 			texte.add(t);

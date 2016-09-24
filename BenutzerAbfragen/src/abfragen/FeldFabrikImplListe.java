@@ -1,13 +1,13 @@
 package abfragen;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Vector;
 
 import felder.AusgabeFeldListe;
 
 public class FeldFabrikImplListe {
-	private Vector<FeldFabrikImpl> fabriken = new Vector<FeldFabrikImpl>();
+	private List<FeldFabrikImpl> fabriken = new ArrayList<FeldFabrikImpl>();
 	private HashMap<String,FeldFabrikImpl> fabrikenHash = new HashMap<String,FeldFabrikImpl>();
 	
 	public FeldFabrikImplListe() {
@@ -20,7 +20,7 @@ public class FeldFabrikImplListe {
 	}
 	
 	public List<FeldFabrik> getFabriken() {
-		Vector<FeldFabrik> erg = new Vector<FeldFabrik>();
+		List<FeldFabrik> erg = new ArrayList<FeldFabrik>();
 		for(FeldFabrikImpl f : fabriken) {
 			if (f.isOn()) {
 				erg.add(f);
